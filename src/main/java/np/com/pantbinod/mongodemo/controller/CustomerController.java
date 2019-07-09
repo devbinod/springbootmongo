@@ -3,6 +3,7 @@ package np.com.pantbinod.mongodemo.controller;
 import np.com.pantbinod.mongodemo.model.Customer;
 import np.com.pantbinod.mongodemo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,12 +11,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class CustomerController {
 
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @GetMapping("/")
+    public String startUp() {
+        return "index";
+    }
 
     @RequestMapping(value = "/api/v1/customers" , method = RequestMethod.GET)
     public List<Customer> getAllCustomer(){
